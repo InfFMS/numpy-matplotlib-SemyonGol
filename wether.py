@@ -69,3 +69,4 @@ ax2.plot(days, T)
 plt.scatter(daysC, cold, color='Blue')
 plt.scatter(daysH, hot, color='Red')
 plt.show()
+
