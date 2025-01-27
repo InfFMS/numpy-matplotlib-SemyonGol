@@ -101,34 +101,34 @@ def bottomright(M):
 for i in range(0, 15):
     if dicX[i] == 0:
         if dicY[i] == 0:
-            print(topleft(mine))
+            topleft(mine)
         if dicY[i] == 10:
-            print(bottomleft(mine))
+            bottomleft(mine)
         else:
-            print(left(mine, dicY[i], dicX[i]))
+            left(mine, dicY[i], dicX[i])
     elif dicY[i] == 0:
         if dicX[i] == 10:
-            print(topright(mine))
+            topright(mine)
         elif dicX[i] == 0:
-            print(topleft(mine))
+            topleft(mine)
         else:
-            print(top(mine, dicY[i], dicX[i]))
+            top(mine, dicY[i], dicX[i])
     elif dicX[i] == 10:
         if dicY[i] == 10:
-            print(bottomright(mine))
+            bottomright(mine)
         elif dicY[i] == 0:
-            print(topright(mine))
+            topright(mine)
         else:
-            print(right(mine, dicY[i], dicX[i]))
+            right(mine, dicY[i], dicX[i])
     elif dicY[i] == 10:
         if dicX[i] == 0:
-            print(bottomleft(mine))
+            bottomleft(mine)
         if dicX[i] == 10:
-            print(bottomright(mine))
+            bottomright(mine)
         else:
-            print(bottom(mine, dicY[i], dicX[i]))
+            bottom(mine, dicY[i], dicX[i])
     else:
-        print(centre(mine, dicY[i], dicX[i]))
+        centre(mine, dicY[i], dicX[i])
 
 #Заменим значения клеток под минами на 0, так как
 #под ними клетка не может иметь числовое значение

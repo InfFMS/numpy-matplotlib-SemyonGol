@@ -1,97 +1,27 @@
+import matplotlib.pyplot as plt
 from random import randint
 import numpy as np
+T, days = [], []
+cold = np.array([])
+hot = np.array([])
+daysC, daysH = [], []
+T += [randint(-25, 30)
+      for x in range(0, 365)]
 
-M = np.zeros((11, 11))
+for i in range(0, 363):
+    days += [i+1]
+days += [364] + [365]
 
-def centre(M, Y, X):
-    M[Y-1, X-1] += 1
-    M[Y, X-1] += 1
-    M[Y+1, X-1] += 1
-    M[Y+1, X] += 1
-    M[Y+1, X+1] += 1
-    M[Y, X+1] += 1
-    M[Y-1, X+1] += 1
-    M[Y-1, X] += 1
-    return M
-def left(M, Y, X):
-    M[Y-1, X] += 1
-    M[Y-1, X+1] += 1
-    M[Y, X+1] += 1
-    M[Y+1, X+1] += 1
-    M[Y+1, X] += 1
-    return M
-def top(M, Y, X):
-    M[Y, X-1] += 1
-    M[Y+1, X-1] += 1
-    M[Y+1, X] += 1
-    M[Y+1, X+1] += 1
-    M[Y, X+1] += 1
-    return M
-def right(M, Y, X):
-    M[Y-1, X] += 1
-    M[Y-1, X-1] += 1
-    M[Y, X-1] += 1
-    M[Y+1, X-1] += 1
-    M[Y+1, X] += 1
-    return M
-def bottom(M, Y, X):
-    M[Y, X-1] += 1
-    M[Y-1, X-1] += 1
-    M[Y-1, X] += 1
-    M[Y-1, X+1] += 1
-    M[Y, X+1] += 1
-    return M
-def bottomleft(M):
-    M[9, 0] += 1
-    M[9, 1] += 1
-    M[10, 1] += 1
-    return M
-def topleft(M):
-    M[1, 0] += 1
-    M[1, 1] += 1
-    M[0, 1] += 1
-    return M
-def topright(M):
-    M[0, 9] += 1
-    M[1, 9] += 1
-    M[1, 10] += 1
-    return M
-def bottomright(M):
-    M[10, 9] += 1
-    M[9, 9] += 1
-    M[9, 10] += 1
-    return M
-
-y = 5
-x = 0
-M[y, x] += 2
-if x == 0:
-    if y == 0:
-        print(topleft(M))
-    if y == 10:
-        print(bottomleft(M))
+for i in range(1, 365):
+    if T[i] <= 0:
+        cold = np.append(cold, T[i])
+        daysC += [days[i]]
     else:
-        print(left(M, y, x))
-elif y == 0:
-    if x == 10:
-        print(topright(M))
-    if x == 0:
-        print(topleft(M))
-    else:
-        print(top(M, y, x))
-elif x == 10:
-    if y == 10:
-        print(bottomright(M))
-    if y == 0:
-        print(topright(M))
-    else:
-        print(right(M, y, x))
-elif y == 10:
-    if x == 0:
-        print(bottomleft(M))
-    if x == 10:
-        print(bottomright(M))
-    else:
-        print(bottom(M, y, x))
-else:
-    print(centre(M, y, x))
+        hot = np.append(hot, T[i])
+        daysH += [days[i]]
+fig = plt.figure(figsize=(10, 6))
+ax1 = fig.add_axes([0.1, 0.3, 0.8, 0.6])
+ax1.plot(days, T)
+plt.scatter(daysC, cold, color='Blue')
+plt.scatter(daysH, hot, color='Red')
+plt.show()
